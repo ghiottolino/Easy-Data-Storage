@@ -1,12 +1,15 @@
 package com.nicolatesser.android.easydatastorage;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.view.Menu;
@@ -24,6 +27,9 @@ public class EasyDataStorage extends Activity {
 	
     private TextView mTextView;
     private ListView mListView;
+    
+	public static final String PREFS_N_KEY = "n";
+
     
     /** Called when the activity is first created. */
     @Override
@@ -43,6 +49,21 @@ public class EasyDataStorage extends Activity {
     protected List<String> getData()
     {
     	List<String> data = new Vector<String>();
+    
+    	SharedPreferences settings = getPreferences(0);
+		Map<String, ?> all = settings.getAll();
+		
+		// TODO : not retrieving the map.
+		Collection<?> values = all.values();
+		
+		for (Object value:values)
+		{
+			data.add(value.toString());
+		}
+		
+		
+    	
+    	
     	data.add("test");
     	return data;
     }
