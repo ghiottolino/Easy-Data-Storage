@@ -30,6 +30,9 @@ public class EasyDataStorage extends Activity {
         
         mTextView = (TextView) findViewById(R.id.text);
         mListView = (ListView) findViewById(R.id.list);
+        List<String> data = getData();
+        showData(data);
+        prepareClipboardFunctionality(data);
 
     }
     
@@ -55,17 +58,22 @@ public class EasyDataStorage extends Activity {
     		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.data,R.id.value, data);
     		
     		mListView.setAdapter(adapter);
-    		
-    		OnItemClickListener listener = new OnItemClickListener() {
 
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,
-						int arg2, long arg3) {
-					copyTextToClipboard(data,(int)arg2);					
-				}
-			};;;
-			mListView.setOnItemClickListener(listener );
     	}
+    }
+    
+    protected void prepareClipboardFunctionality(final List<String> data)
+    {
+		
+		OnItemClickListener listener = new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				copyTextToClipboard(data,(int)arg2);					
+			}
+		};;;
+		mListView.setOnItemClickListener(listener );
     }
     
 	
