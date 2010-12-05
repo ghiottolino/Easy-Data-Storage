@@ -4,5 +4,6 @@
     <string name="app_name">EasyDataStorage</string>
     <string name="add">Add</string>
     <string name="records">Records</string>
-    
+    <string name="buttonHandler">myClickHandler</string>
+    <string name="save">Save</string>
 </resources>
