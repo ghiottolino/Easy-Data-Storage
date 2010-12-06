@@ -17,8 +17,6 @@ public class AddRecordActivity extends Activity {
 
 	public static final String PREFS_NAME = "EASY_DATA_STORAGE";
 
-	public static final String PREFS_N_KEY = "n";
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,15 +36,10 @@ public class AddRecordActivity extends Activity {
 
 	protected void saveText(String text) {
 
-		SharedPreferences settings = getPreferences(0);
-		String nValue = settings.getString(PREFS_N_KEY, "0");
-		int n = Integer.parseInt(nValue);
-		n++;
-		nValue = Integer.toString(n);
-
+    	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		
 		SharedPreferences.Editor editor = settings.edit();
-		editor.putString(nValue, text);
-		editor.putString(PREFS_N_KEY, nValue);
+		editor.putString(text, text);
 
 		// Commit the edits!
 		boolean commit = editor.commit();
